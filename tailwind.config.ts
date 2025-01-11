@@ -24,7 +24,7 @@ const config = {
     },
     extend: {
       colors: (() => {
-        const colorNames = ['gray', 'blackA', 'black', 'mauve', 'violet', 'purple', 'indigo'];
+        const colorNames = ['gray', 'yellow', 'mauve', 'violet', 'purple', 'indigo'];
         const shades = 12;
 
         const colors: ColorShades = {};

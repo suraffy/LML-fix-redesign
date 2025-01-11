@@ -158,15 +158,15 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
           />
         </Link>
 
-        <NavigationMenu.List className="hidden m-0 sm:flex items-end p-0 gap-4 xl:gap-6 font-semibold">
+        <NavigationMenu.List className="hidden m-0 sm:flex items-end p-0 xl:gap-2 font-semibold">
           {navLinks.map((nav) => (
             <NavigationMenu.Item key={nav.id}>
               {nav.hover ? (
                 <>
-                  <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-0.5 rounded px-4 py-3 text-[16px] font-medium leading-none text-violet11 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7">
+                  <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-0.5 rounded px-4 py-3 text-[16px] font-medium leading-none text-gray11 outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7">
                     {nav.title}
                     <CaretDownIcon
-                      className="relative top-px text-violet11 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                      className="relative top-px text-gray11 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                       aria-hidden
                     />
                   </NavigationMenu.Trigger>
@@ -180,7 +180,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                             <Link
                               href="/"
                               onClick={handleClickLink}
-                              className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-[#fef100] to-gray-800 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-violet7"
+                              className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-[#fef100] to-gray-800 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
                             >
                               <Image
                                 src={logo}
@@ -203,7 +203,12 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                       )}
 
                       {nav.subLinks?.map((subLink) => (
-                        <ListItem key={subLink.id} href={subLink.link} title={subLink.title}>
+                        <ListItem
+                          key={subLink.id}
+                          href={subLink.link}
+                          title={subLink.title}
+                          className="hover:bg-yellow3"
+                        >
                           <div className="inline-flex gap-2">
                             {subLink.icon} {subLink.description}
                           </div>
@@ -214,7 +219,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                 </>
               ) : (
                 <NavigationMenu.Link
-                  className="block select-none rounded px-4 py-3 text-[16px] font-medium leading-none text-violet11 no-underline outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-violet7"
+                  className="block select-none rounded px-4 py-3 text-[16px] font-medium leading-none text-gray11 no-underline outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
                   href={nav.link}
                 >
                   {nav.title}
@@ -224,15 +229,15 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
           ))}
 
           <NavigationMenu.Indicator className="top-full z-10 flex h-2.5 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
-            <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xsl bg-violet4" />
+            <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray4" />
           </NavigationMenu.Indicator>
         </NavigationMenu.List>
 
         <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-          <NavigationMenu.Viewport className="shadow-[0_2px_10px] shadow-gray4 border border-gray3 relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+          <NavigationMenu.Viewport className="shadow-[0_2px_10px] shadow-gray4 border border-yellow4 relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
         </div>
 
-        <Flex gap="3" align="center">
+        <Flex gap="4" align="center">
           <Button size="3">
             <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
               <Tag size={20} /> Book Now
@@ -248,7 +253,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
       </NavigationMenu.Root>
 
       <div className="px-4 py-2.5">
-        <Button variant="outline" onClick={toggleTheme} className="ml-10">
+        <Button variant="outline" onClick={toggleTheme}>
           {theme === 'light' ? <SunIcon /> : <MoonIcon />}
         </Button>
       </div>
@@ -268,13 +273,13 @@ const ListItem = forwardRef<HTMLAnchorElement, ListItemProps>(
       <NavigationMenu.Link asChild>
         <a
           className={classNames(
-            'block select-none rounded-md p-3 text-[15px] leading-none no-underline outline-none transition-colors hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-violet7',
+            'block select-none rounded-md p-3 text-[15px] leading-none no-underline outline-none transition-colors hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7',
             className
           )}
           {...props}
           ref={forwardedRef}
         >
-          <div className="mb-[5px] font-medium leading-[1.2] text-violet12">{title}</div>
+          <div className="mb-[5px] font-medium leading-[1.2] text-yellow12">{title}</div>
           <div className="leading-[1.4] text-mauve11">
             <div className="inline-flex gap-2">{children}</div>
           </div>
