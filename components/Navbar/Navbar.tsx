@@ -9,7 +9,12 @@ import Link from 'next/link';
 import logo from '@/public/lml_logo.png';
 import { FolderCode, Droplet, SearchCheck, Key, DollarSign, Settings, Tag } from 'lucide-react';
 import { Button, Flex } from '@radix-ui/themes';
-import * as RadixColors from '@radix-ui/colors';
+import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+
+interface Props {
+  theme: 'light' | 'dark';
+  toggleTheme: () => void;
+}
 
 interface SubLink {
   id: number;
@@ -105,7 +110,7 @@ const navLinks: NavLink[] = [
   { id: 4, title: 'FAQ', link: '/faq', hover: false },
 ];
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<number | null>(null);
 
@@ -122,7 +127,7 @@ const NavBar: React.FC = () => {
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    setIsSticky(currentScrollY > 20);
+    setIsSticky(currentScrollY > 40);
   };
 
   useEffect(() => {
@@ -133,8 +138,8 @@ const NavBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="shadow-sm">
-      <NavigationMenu.Root className="flex items-end justify-between relative bg-white dark:bg-gray2 dark:bg-gray2 sm:mx-20 py-2">
+    <div className="shadow-sm flex justify-between items-end">
+      <NavigationMenu.Root className="flex flex-1 items-end justify-between relative bg-white dark:bg-gray2 sm:mx-20 py-2">
         {/* Logo */}
         <Link href="/" onClick={handleClickLink} className="w-16">
           <Image
@@ -241,6 +246,12 @@ const NavBar: React.FC = () => {
           </Button>
         </Flex>
       </NavigationMenu.Root>
+
+      <div className="px-4 py-2.5">
+        <Button variant="outline" onClick={toggleTheme} className="ml-10">
+          {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+        </Button>
+      </div>
     </div>
   );
 };
