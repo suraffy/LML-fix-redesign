@@ -32,7 +32,7 @@ export default function RootLayout({
           scaling="95%"
         >
           <div
-            className={`hidden sm:flex gap-3 items-center justify-center bg-[#FEF100] text-gray-900 text-center text-sm font-medium tracking-wide`}
+            className={`hidden lg:flex gap-3 items-center justify-center bg-[#FEF100] text-gray-900 text-center text-sm font-medium tracking-wide`}
           >
             <span className="py-3">Reliable Repairs for Your Phones, Laptops, and Electronics</span>
             <Button size="2" style={{ backgroundColor: '#41431f', color: 'white' }}>

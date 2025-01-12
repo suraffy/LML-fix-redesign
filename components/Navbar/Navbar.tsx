@@ -7,7 +7,17 @@ import { CaretDownIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/public/lml_logo.png';
-import { FolderCode, Droplet, SearchCheck, Key, DollarSign, Settings, Tag } from 'lucide-react';
+import {
+  FolderCode,
+  Droplet,
+  SearchCheck,
+  Key,
+  DollarSign,
+  Settings,
+  Tag,
+  AlignJustify,
+  ChevronDown,
+} from 'lucide-react';
 import { Button, Flex } from '@radix-ui/themes';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 
@@ -112,18 +122,11 @@ const navLinks: NavLink[] = [
 
 const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
   const [openNavbar, setOpenNavbar] = useState(false);
-  const [expandedMenu, setExpandedMenu] = useState<number | null>(null);
+  const [isSticky, setIsSticky] = useState(false);
 
   const handleClickLink = () => {
     setOpenNavbar(false);
-    setExpandedMenu(null);
   };
-
-  const toggleSubMenu = (id: number) => {
-    setExpandedMenu((prev) => (prev === id ? null : id));
-  };
-
-  const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
@@ -138,8 +141,8 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
   }, []);
 
   return (
-    <div className="shadow-sm flex justify-between items-end">
-      <NavigationMenu.Root className="flex flex-1 items-end justify-between relative bg-white dark:bg-gray2 sm:mx-20 py-2">
+    <div className="relative shadow-sm flex justify-between items-end bg-white dark:bg-gray2">
+      <NavigationMenu.Root className="flex flex-1 items-end justify-between relative sm:mx-20 py-2">
         {/* Logo */}
         <Link href="/" onClick={handleClickLink} className="w-16">
           <Image
@@ -158,14 +161,17 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
           />
         </Link>
 
-        <NavigationMenu.List className="hidden m-0 sm:flex items-end p-0 xl:gap-2 font-semibold">
+        <NavigationMenu.List
+          className={`flex-2 xl:gap-2 font-semibold rounded-lg ${openNavbar ? 'fixed top-[77px] lg:top-[121px] right-0 min-w-72 p-8 shadow-[0_2px_10px] shadow-gray4 border border-gray4 ' : 'hidden lg:flex items-end '}`}
+        >
           {navLinks.map((nav) => (
             <NavigationMenu.Item key={nav.id}>
               {nav.hover ? (
                 <>
-                  <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-0.5 rounded px-4 py-3 text-[16px] font-medium leading-none text-gray11 outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7">
+                  <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded px-4 py-3 text-[16px] font-medium leading-none text-gray11 outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7">
                     {nav.title}
-                    <CaretDownIcon
+                    <ChevronDown
+                      size={18}
                       className="relative top-px text-gray11 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
                       aria-hidden
                     />
@@ -231,30 +237,54 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
           <NavigationMenu.Indicator className="top-full z-10 flex h-2.5 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
             <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray4" />
           </NavigationMenu.Indicator>
+
+          <div className="md:hidden mt-4">
+            <Flex gap="4" align="center">
+              <Button size="3">
+                <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
+                  <Tag size={20} /> Book Now
+                </Link>
+              </Button>
+
+              <Button size="3" color="gray" highContrast>
+                <Link href="/" onClick={handleClickLink} className="py-2">
+                  Contact Us
+                </Link>
+              </Button>
+            </Flex>
+          </div>
         </NavigationMenu.List>
 
         <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-          <NavigationMenu.Viewport className="shadow-[0_2px_10px] shadow-gray4 border border-yellow4 relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+          <NavigationMenu.Viewport className="shadow-[0_2px_10px] shadow-gray4 border border-gray4 relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
         </div>
 
-        <Flex gap="4" align="center">
-          <Button size="3">
-            <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
-              <Tag size={20} /> Book Now
-            </Link>
-          </Button>
+        <div className="hidden md:block">
+          <Flex gap="4" align="center" className="ml-10">
+            <Button size="3">
+              <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
+                <Tag size={20} /> Book Now
+              </Link>
+            </Button>
 
-          <Button size="3" color="gray" highContrast>
-            <Link href="/" onClick={handleClickLink} className="py-2">
-              Contact Us
-            </Link>
-          </Button>
-        </Flex>
+            <Button size="3" color="gray" highContrast>
+              <Link href="/" onClick={handleClickLink} className="py-2">
+                Contact Us
+              </Link>
+            </Button>
+          </Flex>
+        </div>
       </NavigationMenu.Root>
 
-      <div className="px-4 py-2.5">
+      <div className="px-4 py-2.5 hidden lg:block">
         <Button variant="outline" onClick={toggleTheme}>
           {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+        </Button>
+      </div>
+
+      <div className="px-4 py-2.5 lg:hidden">
+        <Button variant="outline" onClick={() => setOpenNavbar(!openNavbar)}>
+          <AlignJustify />
         </Button>
       </div>
     </div>
