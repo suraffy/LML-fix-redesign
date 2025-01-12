@@ -24,7 +24,7 @@ const config = {
     },
     extend: {
       colors: (() => {
-        const colorNames = ['gray', 'yellow', 'mauve', 'violet', 'purple', 'indigo'];
+        const colorNames = ['gray', 'blackA', 'yellow', 'mauve', 'violet', 'purple', 'indigo'];
         const shades = 12;
 
         const colors: ColorShades = {};
@@ -79,6 +79,26 @@ const config = {
           from: { opacity: '1' },
           to: { opacity: '0' },
         },
+        slideDown: {
+          from: { height: '0px' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        slideUp: {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0px' },
+        },
+        overlayShow: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        contentShow: {
+          from: { transform: 'translateX(50%)' },
+          to: { transform: 'translateX(0)' },
+        },
+        contentHide: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(100%)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -92,6 +112,11 @@ const config = {
         enterFromRight: 'enterFromRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
         exitToRight: 'exitToRight 250ms ease',
+        slideDown: 'slideDown 300ms ease-in-out',
+        slideUp: 'slideUp 300ms ease-in-out',
+        overlayShow: 'overlayShow 300ms ease-in-out',
+        contentShow: 'contentShow 300ms ease-in-out',
+        contentHide: 'contentHide 300ms ease-in-out',
       },
     },
   },
