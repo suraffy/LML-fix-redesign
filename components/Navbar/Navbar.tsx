@@ -1,5 +1,6 @@
 'use client';
 
+import { Theme } from '@radix-ui/themes';
 import React, { forwardRef, AnchorHTMLAttributes, ReactNode, useState, useEffect } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -281,132 +282,142 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
 
       <Dialog.Root open={openNavbar} onOpenChange={setOpenNavbar}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-black/50 transition-opacity duration-300" />
+          <Theme appearance={theme}>
+            <Dialog.Overlay className="fixed inset-0 bg-black/50 transition-opacity duration-300" />
 
-          <Dialog.Content className="fixed right-0 top-0 bottom-0 h-screen w-[90vw] max-w-[400px] overflow-y-auto rounded-tl-lg bg-gray1 dark:bg-gray1 p-6 shadow-xl transition-transform duration-300 data-[state=open]:animate-contentShow data-[state=closed]:animate-contentHide">
-            <Dialog.Title className="sr-only">Navigation Menu</Dialog.Title>
+            <Dialog.Content className="fixed right-0 top-0 bottom-0 h-screen w-[90vw] max-w-[400px] overflow-y-auto rounded-tl-lg bg-gray1 p-6 shadow-xl transition-transform duration-300 data-[state=open]:animate-contentShow data-[state=closed]:animate-contentHide">
+              <Dialog.Title className="sr-only">Navigation Menu</Dialog.Title>
 
-            <Dialog.Description className="sr-only">
-              Use the navigation links below to explore the website.
-            </Dialog.Description>
+              <Dialog.Description className="sr-only">
+                Use the navigation links below to explore the website.
+              </Dialog.Description>
 
-            <div className="flex justify-between items-center mb-10">
-              <Link href="/" onClick={handleClickLink} className="flex items-center gap-3">
-                <Image
-                  src={logo}
-                  width={40}
-                  height={40}
-                  loading="lazy"
-                  alt="logo"
-                  className="rounded-lg hover:scale-125 transition-transform"
-                />
-                <span className="text-[20px] font-semibold text-gray12 dark:text-gray12">
-                  LML Fix
-                </span>
-              </Link>
-              <Dialog.Close asChild>
-                <button
-                  className="p-2 rounded-full bg-yellow3 hover:bg-yellow4 text-yellow12 focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
-                  aria-label="Close"
-                >
-                  <X size={20} />
-                </button>
-              </Dialog.Close>
-            </div>
+              <div className="flex justify-between items-center mb-10 pb-4 border-b border-gray3">
+                <Link href="/" onClick={handleClickLink} className="flex items-center gap-3">
+                  <Image
+                    src={logo}
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    alt="logo"
+                    className="rounded-lg hover:scale-125 transition-transform"
+                  />
+                  <span className="text-[20px] font-semibold text-gray12 dark:text-gray12">
+                    LML Fix
+                  </span>
+                </Link>
+                <Dialog.Close asChild>
+                  <button
+                    className="p-2 rounded-full bg-yellow3 hover:bg-yellow4 text-yellow12 focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
+                    aria-label="Close"
+                  >
+                    <X size={20} />
+                  </button>
+                </Dialog.Close>
+              </div>
 
-            <Accordion.Root type="single" defaultValue="item-1" collapsible>
-              {navLinks.map((nav) => (
-                <Accordion.Item key={nav.id} value={nav.title}>
-                  <Accordion.Trigger className="w-full px-4 py-3 mb-2 rounded-lg bg-gray2 hover:bg-yellow3 text-gray12 flex justify-between items-center">
-                    <span>{nav.title}</span>
-                    {nav.subLinks && <ChevronDown size={18} />}
-                  </Accordion.Trigger>
-                  {nav.subLinks && (
-                    <Accordion.Content className="pl-6 space-y-3 overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
-                      {nav.image && (
-                        <Link
-                          href="/"
-                          onClick={handleClickLink}
-                          className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-yellow3 to-gray4 text-gray12 hover:shadow-md shadow-gray2"
-                        >
-                          <Image
-                            src={logo}
-                            width={60}
-                            height={60}
-                            loading="lazy"
-                            alt="logo"
-                            className="rounded-lg hover:scale-110 transition-transform"
-                          />
-                          <div>
-                            <p className="text-lg font-bold text-gray12">LML Fix</p>
-                            <p className="text-sm text-gray11">
-                              Fast and affordable, around Seattle.
-                            </p>
-                          </div>
-                        </Link>
-                      )}
-                      {nav.subLinks.map((subLink) => (
-                        <Link
-                          key={subLink.id}
-                          href={subLink.link}
-                          className="block px-4 py-2 rounded-lg bg-gray2 hover:bg-yellow3 text-yellow12"
-                        >
-                          <div className="flex justify-between items-center">
-                            <span>{subLink.title}</span>
-                            {subLink?.icon && <span>{subLink.icon}</span>}
-                          </div>
-                          {subLink.description && (
-                            <span className="block text-sm text-gray10">{subLink.description}</span>
-                          )}
-                        </Link>
-                      ))}
-                    </Accordion.Content>
-                  )}
-                </Accordion.Item>
-              ))}
-            </Accordion.Root>
+              <Accordion.Root type="single" defaultValue="item-1" collapsible>
+                {navLinks.map((nav) => (
+                  <Accordion.Item key={nav.id} value={nav.title}>
+                    <Accordion.Trigger className="w-full px-4 py-3 mb-2 rounded-lg bg-gray2 hover:bg-yellow3 text-gray12 flex justify-between items-center outline-yellow7">
+                      <span>{nav.title}</span>
+                      {nav.subLinks && <ChevronDown size={18} />}
+                    </Accordion.Trigger>
+                    {nav.subLinks && (
+                      <Accordion.Content className="pb-8 pt-1 pr-1 pl-6 space-y-3 overflow-hidden data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown">
+                        {nav.image && (
+                          <Link
+                            href="/"
+                            onClick={handleClickLink}
+                            className="flex items-center gap-4 p-4 rounded-lg bg-gradient-to-r from-yellow3 to-gray4 text-gray12 hover:shadow-md shadow-gray2 outline-yellow7"
+                          >
+                            <Image
+                              src={logo}
+                              width={60}
+                              height={60}
+                              loading="lazy"
+                              alt="logo"
+                              className="rounded-lg hover:scale-110 transition-transform"
+                            />
+                            <div>
+                              <p className="text-lg font-bold text-gray12">LML Fix</p>
+                              <p className="text-sm text-gray11">
+                                Fast and affordable, around Seattle.
+                              </p>
+                            </div>
+                          </Link>
+                        )}
+                        {nav.subLinks.map((subLink) => (
+                          <Link
+                            key={subLink.id}
+                            href={subLink.link}
+                            className="block px-4 py-2 rounded-lg bg-gray2 hover:bg-yellow3 text-gray12 outline-yellow7"
+                          >
+                            <div className="flex justify-between items-center">
+                              <span>{subLink.title}</span>
+                              {subLink?.icon && <span>{subLink.icon}</span>}
+                            </div>
+                            {subLink.description && (
+                              <span className="block text-sm text-gray10">
+                                {subLink.description}
+                              </span>
+                            )}
+                          </Link>
+                        ))}
+                      </Accordion.Content>
+                    )}
+                  </Accordion.Item>
+                ))}
+              </Accordion.Root>
 
-            {/* Footer */}
-            <div className="mt-10 mb-40 space-y-6">
-              <div className="flex gap-4">
-                <Button onClick={handleClickLink} className="flex-1">
-                  <Link href="/" className="flex items-center gap-2 p-2 transition-all">
-                    <Tag size={20} /> Book Now
+              {/* Footer */}
+              <div className="mt-10 mb-40 space-y-6">
+                {/* <div className="flex gap-4 mb-10 justify-center"> */}
+                <Flex gap="4" align="center" justify="center">
+                  <Button size="3">
+                    <Link
+                      href="/"
+                      onClick={handleClickLink}
+                      className="flex gap-2 items-center py-2"
+                    >
+                      <Tag size={20} /> Book Now
+                    </Link>
+                  </Button>
+
+                  <Button size="3" color="gray" highContrast>
+                    <Link href="/" onClick={handleClickLink} className="py-2">
+                      Contact Us
+                    </Link>
+                  </Button>
+                </Flex>
+
+                <div className="flex items-center justify-center gap-4">
+                  <Link href="#" title="Facebook">
+                    <Facebook className="text-yellow8 hover:text-yellow6" />
                   </Link>
-                </Button>
-                <Button onClick={handleClickLink} className="flex-1 bg-yellow3 hover:bg-yellow4">
-                  <Link href="/" className="p-2 transition-all">
-                    Contact Us
+                  <Link href="#" title="Linkedin">
+                    <Linkedin className="text-yellow8 hover:text-yellow6" />
                   </Link>
-                </Button>
-              </div>
+                  <Link href="#" title="Twitter">
+                    <Twitter className="text-yellow8 hover:text-yellow6" />
+                  </Link>
+                  <Link href="#" title="Instagram">
+                    <Instagram className="text-yellow8 hover:text-yellow6" />
+                  </Link>
+                </div>
 
-              <div className="flex items-center justify-center gap-4">
-                <Link href="#" title="Facebook">
-                  <Facebook className="text-yellow8 hover:text-yellow6" />
-                </Link>
-                <Link href="#" title="Linkedin">
-                  <Linkedin className="text-yellow8 hover:text-yellow6" />
-                </Link>
-                <Link href="#" title="Twitter">
-                  <Twitter className="text-yellow8 hover:text-yellow6" />
-                </Link>
-                <Link href="#" title="Instagram">
-                  <Instagram className="text-yellow8 hover:text-yellow6" />
-                </Link>
+                <div className="flex justify-between items-center px-4 py-3 rounded-lg bg-gray2">
+                  <span className="text-gray12">Theme</span>
+                  <button
+                    className="p-2 rounded-full bg-gray3 hover:bg-gray4 text-gray12"
+                    onClick={toggleTheme}
+                  >
+                    {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+                  </button>
+                </div>
               </div>
-
-              <div className="flex justify-between items-center px-4 py-3 rounded-lg bg-gray2">
-                <span className="text-gray12">Theme</span>
-                <button
-                  className="p-2 rounded-full bg-gray3 hover:bg-gray4 text-gray12"
-                  onClick={toggleTheme}
-                >
-                  {theme === 'light' ? <SunIcon /> : <MoonIcon />}
-                </button>
-              </div>
-            </div>
-          </Dialog.Content>
+            </Dialog.Content>
+          </Theme>
         </Dialog.Portal>
       </Dialog.Root>
     </>
@@ -431,7 +442,7 @@ const ListItem = forwardRef<HTMLAnchorElement, ListItemProps>(
           {...props}
           ref={forwardedRef}
         >
-          <div className="mb-[5px] font-medium leading-[1.2] text-yellow12">{title}</div>
+          <div className="mb-[5px] font-medium leading-[1.2] text-gray12">{title}</div>
           <div className="leading-[1.4] text-mauve11">
             <div className="inline-flex gap-2">{children}</div>
           </div>
