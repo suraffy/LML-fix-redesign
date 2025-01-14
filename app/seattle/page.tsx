@@ -1,8 +1,6 @@
-import React from 'react';
-import { LocationInfo } from '@/types/Location';
-import LocationLanding from '@/components/LocationShow/LocationLanding';
+import LocationDetails from '@/components/Location/LocationDetails';
 
-export default function page() {
+const page = () => {
   const data = {
     location: 'Seattle',
     address: '700 NW 42nd St STE #333, Seattle, WA 98107, United States',
@@ -24,5 +22,7 @@ export default function page() {
       'https://www.google.com/maps/place/LML+Repair+-+Same+Day+Phone+,+iPad+,+MacBook+Repair/@47.658022,-122.365248,16z/data=!4m6!3m5!1s0x5490154fe786c23b:0x4ebd3ad31cbb95ee!8m2!3d47.6580222!4d-122.3652478!16s%2Fg%2F11v53rzsyt?hl=en&entry=ttu&g_ep=EgoyMDI0MTEwNi4wIKXMDSoASAFQAw%3D%3D',
   };
 
-  return <LocationLanding data={data} />;
-}
+  return <LocationDetails data={data} />;
+};
+
+export default page;
