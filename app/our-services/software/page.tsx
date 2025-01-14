@@ -1,5 +1,10 @@
 import ServiceDetails from '@/components/OurServices/ServiceDetails';
 import { FolderCode } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Software | LML Fix',
+};
 
 const page = () => {
   const data = {

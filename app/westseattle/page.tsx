@@ -1,4 +1,10 @@
 import LocationDetails from '@/components/Location/LocationDetails';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'West Seattle | LML Fix',
+  description: 'Near the West Seattle Bridge on Harbor Ave',
+};
 
 const page = () => {
   const data = {

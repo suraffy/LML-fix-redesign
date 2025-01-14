@@ -1,4 +1,10 @@
 import LocationDetails from '@/components/Location/LocationDetails';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'North Seattle | LML Fix',
+  description: 'Near Les Schwab on Lake City Way NE',
+};
 
 const page = () => {
   const data = {

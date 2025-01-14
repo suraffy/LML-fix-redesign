@@ -1,4 +1,10 @@
 import LocationDetails from '@/components/Location/LocationDetails';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Seattle | LML Fix',
+  description: 'Near Fred Meyer on Leary Wy NW',
+};
 
 const page = () => {
   const data = {
