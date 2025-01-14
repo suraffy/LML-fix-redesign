@@ -23,6 +23,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: '480px',
+      },
       colors: (() => {
         const colorNames = ['gray', 'blackA', 'yellow', 'mauve', 'violet', 'purple', 'indigo'];
         const shades = 12;
