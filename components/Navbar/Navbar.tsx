@@ -1,7 +1,7 @@
 'use client';
 
 import { Theme } from '@radix-ui/themes';
-import React, { forwardRef, AnchorHTMLAttributes, ReactNode, useState, useEffect } from 'react';
+import { forwardRef, AnchorHTMLAttributes, ReactNode, useState, useEffect } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Accordion from '@radix-ui/react-accordion';
@@ -128,7 +128,7 @@ const navLinks: NavLink[] = [
   { id: 4, title: 'FAQ', link: '/faq', hover: false },
 ];
 
-const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
+const NavBar = ({ theme, toggleTheme }: Props) => {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -450,3 +450,5 @@ const ListItem = forwardRef<HTMLAnchorElement, ListItemProps>(
     </li>
   )
 );
+
+ListItem.displayName = 'ListItem';
