@@ -11,41 +11,8 @@ interface ServiceDetailsProps {
 }
 
 const ServiceDetails = ({ data }: { data: ServiceDetailsProps }) => {
-  const serviceDetails = [
-    {
-      title: 'Software Repair',
-      description: 'Fix and update your device software.',
-      icon: <FolderCode className="text-gray-900" />,
-    },
-    {
-      title: 'Diagnostics',
-      description: 'Identify and fix device issues.',
-      icon: <SearchCheck className="text-gray-900" />,
-    },
-    {
-      title: 'Cleaning',
-      description: 'Deep cleaning of your device.',
-      icon: <Droplet className="text-gray-900" />,
-    },
-    {
-      title: 'Unlocks',
-      description: 'Unlock your devices for more flexibility.',
-      icon: <Key className="text-gray-900" />,
-    },
-    {
-      title: 'Buybacks',
-      description: 'Sell your old devices for cash.',
-      icon: <DollarSign className="text-gray-900" />,
-    },
-    {
-      title: 'Customization',
-      description: 'Personalize your device with unique designs.',
-      icon: <Settings className="text-gray-900" />,
-    },
-  ];
-
   return (
-    <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-60">
+    <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-40">
       <header className="bg-gradient-to-r from-gray3 via-yellow9 to-gray3 p-8 text-center text-black">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}

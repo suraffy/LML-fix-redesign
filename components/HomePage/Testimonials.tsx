@@ -34,7 +34,7 @@ const testimonials = [
 
 const Testimonial = () => {
   return (
-    <section className="bg-gray1 py-20 pb-60 px-6 md:px-12 lg:px-20">
+    <section className="bg-gray1 pt-20 pb-40 px-6 md:px-12 lg:px-20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -52,9 +52,11 @@ const Testimonial = () => {
           <motion.div
             key={testimonial.id}
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            // animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: testimonial.id * 0.2 }}
-            className="bg-gray1 p-6 rounded-xl shadow-md flex flex-col items-start border border-transparent hover:border-gray3 hover:shadow-xl transition-all"
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-md mx-auto bg-gray1 p-6 rounded-xl shadow-md flex flex-col items-start border border-transparent hover:border-gray3 hover:shadow-xl transition-all"
           >
             <Flex align="center" gap="4" className="mb-4">
               <motion.img

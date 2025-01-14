@@ -9,36 +9,42 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 const Services = () => {
   const services = [
     {
+      id: 1,
       title: 'Software Repair',
       description: 'Fix and update your device software.',
       icon: <FolderCode className="text-gray-900" />,
       link: 'software',
     },
     {
+      id: 2,
       title: 'Diagnostics',
       description: 'Identify and fix device issues.',
       icon: <SearchCheck className="text-gray-900" />,
       link: 'diagnostics',
     },
     {
+      id: 3,
       title: 'Cleaning',
       description: 'Deep cleaning of your device.',
       icon: <Droplet className="text-gray-900" />,
       link: 'cleaning',
     },
     {
+      id: 4,
       title: 'Unlocks',
       description: 'Unlock your devices for more flexibility.',
       icon: <Key className="text-gray-900" />,
       link: 'unlocks',
     },
     {
+      id: 5,
       title: 'Buybacks',
       description: 'Sell your old devices for cash.',
       icon: <DollarSign className="text-gray-900" />,
       link: 'buybacks',
     },
     {
+      id: 6,
       title: 'Customization',
       description: 'Personalize your device with unique designs.',
       icon: <Settings className="text-gray-900" />,
@@ -54,11 +60,15 @@ const Services = () => {
           Check out the top-quality repair services we offer in the Seattle area!
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-8">
           {services.map((service) => (
             <motion.div
               key={service.title}
               whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: service.id * 0.2 }}
               className="relative p-6 bg-gradient-to-br from-gray2 to-gray4 rounded-lg border border-gray6 shadow-md hover:shadow-lg transition-shadow"
             >
               <div className="text-4xl mb-6 flex items-center justify-center w-14 h-14 bg-yellow9 text-gray1 rounded-full shadow-md">

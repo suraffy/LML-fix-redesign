@@ -6,9 +6,9 @@ import { Facebook, Twitter, Linkedin, Instagram, ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray2 text-gray12 pt-16 pb-8">
-      <div className="container mx-auto text-[15px] px-8 sm:px-16 lg:px-20 flex flex-wrap gap-12">
-        <div className="space-y-10 max-w-md">
+    <footer className="bg-gray2 text-gray12 pt-16 pb-8 border-t">
+      <div className="container mx-auto text-[15px] px-8 sm:px-16 lg:px-20 flex flex-wrap gap-12 sm:justify-evenly lg:justify-normal">
+        <div className="space-y-10 max-w-[400px]">
           <div className="flex flex-col space-y-4">
             <h3 className="text-lg font-semibold text-yellow11">About Us</h3>
             <p className="text-gray11">
@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="space-y-4 max-w-xs">
+        <div className="space-y-4 max-w-[300px]">
           <h3 className="text-lg font-semibold text-yellow11">Stay Connected</h3>
           <p className="text-gray11">Subscribe to our newsletter for updates, offers, and tips.</p>
           <form className="flex space-x-2">
@@ -53,7 +53,7 @@ const Footer = () => {
           </form>
         </div>
 
-        <div className="space-y-4 lg:justify-self-center">
+        <div className="space-y-4">
           <h3 className="text-lg font-semibold text-yellow11">Quick Links</h3>
           <nav className="grid gap-y-2">
             {[

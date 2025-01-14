@@ -26,7 +26,7 @@ const LocationDetails = ({ data }: { data: LocationDetailsProps }) => {
   };
 
   return (
-    <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-60">
+    <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-40">
       <header className="bg-gradient-to-r from-gray3 via-yellow9 to-gray3 p-8 text-center text-black">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
@@ -70,7 +70,7 @@ const LocationDetails = ({ data }: { data: LocationDetailsProps }) => {
               </Flex>
             </Heading>
 
-            <Flex gap="3">
+            <Flex gap="3" wrap="wrap" justify="center">
               <Button>
                 <Link
                   href={`tel: ${data.number}`}

@@ -151,21 +151,17 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
   return (
     <>
       <div
-        className={`${isSticky ? 'shadow-sm bg-white' : ''} flex justify-between items-end bg-gray1 dark:bg-gray2 transition-all`}
+        className={`${isSticky ? 'shadow-sm bg-white' : 'shadow-sm shadow-gray4 bg-white sm:bg-gray1 sm:shadow-none'} container flex justify-between items-end dark:bg-gray2 transition-all`}
       >
-        <NavigationMenu.Root className="flex flex-1 items-end justify-between relative sm:mx-20 py-2">
+        <NavigationMenu.Root className="flex flex-1 items-end justify-between relative py-2">
           <Link href="/" onClick={handleClickLink}>
             <Image
               src={logo}
               width={50}
               height={50}
-              loading="lazy"
+              priority
               alt="logo"
-              className="block mx-auto rounded-lg"
-              style={{
-                borderRadius: isSticky ? '50%' : '',
-                transition: 'all 0.15s ease',
-              }}
+              className="block mx-auto rounded-full"
             />
           </Link>
 
@@ -266,13 +262,13 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
           </div>
         </NavigationMenu.Root>
 
-        <div className="px-4 py-2.5 hidden lg:block">
+        <div className="pl-8 py-2.5 hidden lg:block">
           <Button variant="outline" onClick={toggleTheme}>
             {theme === 'light' ? <SunIcon /> : <MoonIcon />}
           </Button>
         </div>
 
-        <div className="px-4 py-2.5 lg:hidden">
+        <div className="pl-8 py-2.5 lg:hidden">
           <Button variant="outline" onClick={() => setOpenNavbar(!openNavbar)}>
             <AlignJustify />
           </Button>
@@ -319,7 +315,13 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
                 {navLinks.map((nav) => (
                   <Accordion.Item key={nav.id} value={nav.title}>
                     <Accordion.Trigger className="w-full px-4 py-3 mb-2 rounded-lg bg-gray2 hover:bg-yellow3 text-gray12 flex justify-between items-center outline-yellow7">
-                      <span>{nav.title}</span>
+                      {!nav.subLinks ? (
+                        <Link href={nav.link} onClick={handleClickLink}>
+                          {nav.title}
+                        </Link>
+                      ) : (
+                        <span>{nav.title}</span>
+                      )}
                       {nav.subLinks && <ChevronDown size={18} />}
                     </Accordion.Trigger>
                     {nav.subLinks && (
@@ -351,6 +353,7 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
                             key={subLink.id}
                             href={subLink.link}
                             className="block px-4 py-2 rounded-lg bg-gray2 hover:bg-yellow3 text-gray12 outline-yellow7"
+                            onClick={handleClickLink}
                           >
                             <div className="flex justify-between items-center">
                               <span>{subLink.title}</span>

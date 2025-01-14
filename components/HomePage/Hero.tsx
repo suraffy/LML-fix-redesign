@@ -8,8 +8,8 @@ import { Tag, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative bg-gray1 text-gray12 pt-12">
-      <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center py-16 px-6 gap-12">
+    <section className="relative bg-gray1 text-gray12 lg:pt-12">
+      <div className="container flex flex-col-reverse lg:flex-row items-center py-16 px-6 gap-12">
         <div className="lg:w-1/2 space-y-6">
           <motion.h1
             className="text-4xl lg:text-5xl font-bold text-yellow12"
