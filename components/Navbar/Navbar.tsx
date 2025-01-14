@@ -1,7 +1,7 @@
 'use client';
 
 import { Theme } from '@radix-ui/themes';
-import React, { forwardRef, AnchorHTMLAttributes, ReactNode, useState, useEffect } from 'react';
+import { forwardRef, AnchorHTMLAttributes, ReactNode, useState, useEffect } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Accordion from '@radix-ui/react-accordion';
@@ -128,7 +128,7 @@ const navLinks: NavLink[] = [
   { id: 4, title: 'FAQ', link: '/faq', hover: false },
 ];
 
-const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
+const NavBar = ({ theme, toggleTheme }: Props) => {
   const [openNavbar, setOpenNavbar] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -369,9 +369,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                 ))}
               </Accordion.Root>
 
-              {/* Footer */}
               <div className="mt-10 mb-40 space-y-6">
-                {/* <div className="flex gap-4 mb-10 justify-center"> */}
                 <Flex gap="4" align="center" justify="center">
                   <Button size="3">
                     <Link
@@ -423,6 +421,8 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
   );
 };
 
+export default NavBar;
+
 type ListItemProps = {
   className?: string;
   children: ReactNode;
@@ -451,4 +451,4 @@ const ListItem = forwardRef<HTMLAnchorElement, ListItemProps>(
   )
 );
 
-export default NavBar;
+ListItem.displayName = 'ListItem';

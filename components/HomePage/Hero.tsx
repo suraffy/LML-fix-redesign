@@ -16,7 +16,7 @@ const Hero = () => {
             animate={{ opacity: [0, 1], x: [-50, 0] }}
             transition={{ duration: 0.6 }}
           >
-            Seattle's Premier Device Repair Service
+            Seattle&rsquo;s Premier Device Repair Service
           </motion.h1>
           <motion.p
             className="text-base text-gray11"
