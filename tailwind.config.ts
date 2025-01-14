@@ -39,14 +39,6 @@ const config = {
       })(),
 
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
         enterFromRight: {
           from: { opacity: '0', transform: 'translateX(200px)' },
           to: { opacity: '1', transform: 'translateX(0)' },
@@ -101,12 +93,9 @@ const config = {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        //
         scaleIn: 'scaleIn 200ms ease',
         scaleOut: 'scaleOut 200ms ease',
-        fadeIn: 'fadeIn 200ms ease',
+        fadeIn: 'fadeIn 200ms ease-in-out',
         fadeOut: 'fadeOut 200ms ease',
         enterFromLeft: 'enterFromLeft 250ms ease',
         enterFromRight: 'enterFromRight 250ms ease',
