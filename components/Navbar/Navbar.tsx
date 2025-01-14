@@ -369,9 +369,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                 ))}
               </Accordion.Root>
 
-              {/* Footer */}
               <div className="mt-10 mb-40 space-y-6">
-                {/* <div className="flex gap-4 mb-10 justify-center"> */}
                 <Flex gap="4" align="center" justify="center">
                   <Button size="3">
                     <Link
@@ -423,6 +421,8 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
   );
 };
 
+export default NavBar;
+
 type ListItemProps = {
   className?: string;
   children: ReactNode;
@@ -450,5 +450,3 @@ const ListItem = forwardRef<HTMLAnchorElement, ListItemProps>(
     </li>
   )
 );
-
-export default NavBar;

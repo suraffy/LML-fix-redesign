@@ -2,5 +2,5 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'LMLFix',
-  description: 'LMLFix',
+  description: 'LML Fix',
 };
