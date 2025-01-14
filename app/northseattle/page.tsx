@@ -1,11 +1,9 @@
-import React from 'react';
-import LocationLanding from '@/components/LocationShow/LocationLanding';
+import LocationDetails from '@/components/Location/LocationDetails';
 
-export default function page() {
+const page = () => {
   const data = {
     location: 'North Seattle',
-    address:
-      '10015 Lake City Way NE STE #231, Seattle, WA 98125, United States',
+    address: '10015 Lake City Way NE STE #231, Seattle, WA 98125, United States',
     near: 'Near Les Schwab on Lake City Way NE',
     building: 'Big red/white building',
     floor: '2nd floor',
@@ -23,5 +21,8 @@ export default function page() {
     direction:
       'https://www.google.com/maps?ll=47.70166,-122.302661&z=11&t=m&hl=en&gl=SO&mapclient=embed&cid=15994105867175279902',
   };
-  return <LocationLanding data={data} />;
-}
+
+  return <LocationDetails data={data} />;
+};
+
+export default page;

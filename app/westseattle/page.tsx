@@ -1,9 +1,6 @@
-import React from 'react';
-import { LocationInfo } from '@/types/Location';
-import LocationShow from '@/components/LocationShow/LocationShow';
-import LocationLanding from '@/components/LocationShow/LocationLanding';
+import LocationDetails from '@/components/Location/LocationDetails';
 
-export default function page() {
+const page = () => {
   const data = {
     location: 'West Seattle',
     address: '3400 Harbor Ave SW STE #301, Seattle, WA 98126, United States',
@@ -24,5 +21,8 @@ export default function page() {
     direction:
       'https://www.google.com/maps?ll=47.572857,-122.370405&z=11&t=m&hl=en&gl=US&mapclient=embed&cid=9892666592203065347',
   };
-  return <LocationLanding data={data} />;
-}
+
+  return <LocationDetails data={data} />;
+};
+
+export default page;
