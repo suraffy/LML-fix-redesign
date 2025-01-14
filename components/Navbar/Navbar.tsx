@@ -62,43 +62,43 @@ const navLinks: NavLink[] = [
       {
         id: 1,
         title: 'Software',
-        link: '/software',
-        icon: <FolderCode />,
+        link: '/our-services/software',
+        icon: <FolderCode size={18} />,
         description: 'Fix and update',
       },
       {
         id: 2,
         title: 'Diagnostics',
-        link: '/diagnostics',
-        icon: <SearchCheck />,
+        link: '/our-services/diagnostics',
+        icon: <SearchCheck size={18} />,
         description: 'Identify and fix device issues',
       },
       {
         id: 3,
         title: 'Cleaning',
-        link: '/cleaning',
-        icon: <Droplet />,
+        link: '/our-services/cleaning',
+        icon: <Droplet size={18} />,
         description: 'Deep clean',
       },
       {
         id: 4,
         title: 'Unlocks',
-        link: '/unlocks',
-        icon: <Key />,
+        link: '/our-services/unlocks',
+        icon: <Key size={18} />,
         description: 'Unlock your devices',
       },
       {
         id: 5,
         title: 'Buybacks',
-        link: '/buybacks',
-        icon: <DollarSign />,
+        link: '/our-services/buybacks',
+        icon: <DollarSign size={18} />,
         description: 'Sell your old devices',
       },
       {
         id: 6,
         title: 'Customization',
-        link: '/customization',
-        icon: <Settings />,
+        link: '/our-services/customization',
+        icon: <Settings size={18} />,
         description: 'Personalize your device',
       },
     ],
@@ -138,7 +138,7 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    setIsSticky(currentScrollY > 40);
+    setIsSticky(currentScrollY > 0);
   };
 
   useEffect(() => {
@@ -150,22 +150,21 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
 
   return (
     <>
-      <div className="shadow-sm flex justify-between items-end bg-white dark:bg-gray2">
+      <div
+        className={`${isSticky ? 'shadow-sm bg-white' : ''} flex justify-between items-end bg-gray1 dark:bg-gray2 transition-all`}
+      >
         <NavigationMenu.Root className="flex flex-1 items-end justify-between relative sm:mx-20 py-2">
-          {/* Logo */}
-          <Link href="/" onClick={handleClickLink} className="w-16">
+          <Link href="/" onClick={handleClickLink}>
             <Image
               src={logo}
               width={50}
               height={50}
               loading="lazy"
               alt="logo"
-              className="block mx-auto rounded-xl"
+              className="block mx-auto rounded-lg"
               style={{
-                width: isSticky ? '40px' : '60px',
-                height: isSticky ? '40px' : '60px',
                 borderRadius: isSticky ? '50%' : '',
-                transition: 'all 0.2s ease',
+                transition: 'all 0.15s ease',
               }}
             />
           </Link>
@@ -241,20 +240,20 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
               </NavigationMenu.Item>
             ))}
 
-            <NavigationMenu.Indicator className="top-full z-10 flex h-2.5 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
-              <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray4" />
+            <NavigationMenu.Indicator className="top-full z-10 flex h-3 -mt-1 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
+              <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray7" />
             </NavigationMenu.Indicator>
           </NavigationMenu.List>
 
           <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="shadow-[0_2px_10px] shadow-gray4 border border-gray4 relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+            <NavigationMenu.Viewport className="border border-gray3 relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
           </div>
 
           <div className="hidden sm:block">
             <Flex gap="4" align="center">
               <Button size="3">
                 <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
-                  <Tag size={20} /> Book Now
+                  <Tag size={18} /> Book Now
                 </Link>
               </Button>
 
@@ -392,16 +391,16 @@ const NavBar: React.FC<Props> = ({ theme, toggleTheme }) => {
                 </Flex>
 
                 <div className="flex items-center justify-center gap-4">
-                  <Link href="#" title="Facebook">
+                  <Link href="/" title="Facebook">
                     <Facebook className="text-yellow8 hover:text-yellow6" />
                   </Link>
-                  <Link href="#" title="Linkedin">
+                  <Link href="/" title="Linkedin">
                     <Linkedin className="text-yellow8 hover:text-yellow6" />
                   </Link>
-                  <Link href="#" title="Twitter">
+                  <Link href="/" title="Twitter">
                     <Twitter className="text-yellow8 hover:text-yellow6" />
                   </Link>
-                  <Link href="#" title="Instagram">
+                  <Link href="/" title="Instagram">
                     <Instagram className="text-yellow8 hover:text-yellow6" />
                   </Link>
                 </div>
