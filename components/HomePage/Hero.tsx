@@ -13,20 +13,29 @@ const Hero = () => {
         <div className="lg:w-1/2 space-y-6">
           <motion.h1
             className="text-4xl lg:text-5xl font-bold text-yellow12"
-            animate={{ opacity: [0, 1], x: [-50, 0] }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
           >
             Seattle&rsquo;s Premier Device Repair Service
           </motion.h1>
           <motion.p
             className="text-base text-gray11"
-            animate={{ opacity: [0, 1], x: [-50, 0] }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             Fast, affordable, and reliable repair services for tablets, laptops, game consoles, and
             cell phones.
           </motion.p>
-          <motion.div animate={{ opacity: [0, 1], x: [-50, 0] }} transition={{ duration: 1 }}>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
             <Flex gap="4" justify="center" wrap="wrap">
               <Button size="3">
                 <Link href="/" className="flex items-center gap-2">
@@ -44,8 +53,10 @@ const Hero = () => {
 
         <motion.div
           className="lg:w-1/2 max-h-[160px] xs:max-h-[200px] lg:max-h-[360px] relative overflow-hidden rounded-lg"
-          animate={{ opacity: [0, 1], x: [50, 0] }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <Image
             src="/cracked-iphone.jpg"
