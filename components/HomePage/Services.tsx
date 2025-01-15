@@ -1,6 +1,4 @@
-'use client';
-
-import { motion } from 'motion/react';
+import * as motion from 'motion/react-client';
 import { Link } from '@radix-ui/themes';
 import { FolderCode, SearchCheck, Droplet, Key, DollarSign, Settings } from 'lucide-react';
 
@@ -64,11 +62,13 @@ const Services = () => {
           {services.map((service) => (
             <motion.div
               key={service.title}
-              whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: service.id * 0.2 }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+              }}
+              transition={{ duration: 0.4, delay: service.id * 0.1 }}
+              viewport={{ once: true, amount: 0.5 }}
               className="relative p-6 bg-gradient-to-br from-gray2 to-gray4 rounded-lg border border-gray6 shadow-md hover:shadow-lg transition-shadow"
             >
               <div className="text-4xl mb-6 flex items-center justify-center w-14 h-14 bg-yellow9 text-gray1 rounded-full shadow-md">
@@ -81,10 +81,15 @@ const Services = () => {
               </div>
 
               <Link href={`our-services/${service.link}`}>
-                <span className="flex items-center gap-2 hover:gap-3 transition-all">
+                <motion.span
+                  whileHover={{ x: 8 }}
+                  whileTap={{ y: 2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="flex items-center gap-2"
+                >
                   Learn More
                   <ArrowRightIcon className="w-4 h-4" />
-                </span>
+                </motion.span>
               </Link>
             </motion.div>
           ))}

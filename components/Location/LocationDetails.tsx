@@ -1,10 +1,7 @@
-'use client';
-
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import * as motion from 'motion/react-client';
+import Link from 'next/link';
 import { Button, Flex, Heading } from '@radix-ui/themes';
 import { Building2, MapPin, PhoneCall, Send, Signpost } from 'lucide-react';
-import Link from 'next/link';
 
 interface LocationDetailsProps {
   location: string;
@@ -19,12 +16,6 @@ interface LocationDetailsProps {
 }
 
 const LocationDetails = ({ data }: { data: LocationDetailsProps }) => {
-  const [isMapLoading, setIsMapLoading] = useState(false);
-
-  const handleMapLoad = () => {
-    setIsMapLoading(false);
-  };
-
   return (
     <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-40">
       <header className="bg-gradient-to-r from-gray3 via-yellow9 to-gray3 p-8 text-center text-black">
@@ -136,11 +127,6 @@ const LocationDetails = ({ data }: { data: LocationDetailsProps }) => {
             transition={{ duration: 0.4 }}
             className="relative w-full h-96 rounded-lg shadow-lg overflow-hidden self-center"
           >
-            {isMapLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray1/50">
-                <div className="animate-spin h-8 w-8 border-4 border-yellow11 border-t-transparent rounded-full"></div>
-              </div>
-            )}
             <iframe
               src={data.position}
               width="100%"
@@ -148,7 +134,6 @@ const LocationDetails = ({ data }: { data: LocationDetailsProps }) => {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              onLoad={handleMapLoad}
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </motion.div>

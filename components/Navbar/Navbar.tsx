@@ -18,7 +18,6 @@ import {
   DollarSign,
   Settings,
   Tag,
-  AlignJustify,
   ChevronDown,
   X,
   Facebook,

@@ -48,12 +48,18 @@ const Locations = () => {
           {locations.map((location) => (
             <motion.div
               key={location.name}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: location.id * 0.2 }}
-              className="max-w-md  mx-auto flex flex-col bg-gray1 p-6 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+              whileTap={{
+                scale: 0.95,
+                transition: { type: 'spring', stiffness: 300, damping: 20 },
+              }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.4, delay: location.id * 0.2 },
+              }}
+              viewport={{ once: true, amount: 0.5 }}
+              className="max-w-md mx-auto flex flex-col bg-gray1 p-6 py-4 rounded-lg shadow-lg hover:shadow-xl transition-hover cursor-pointer"
               onClick={() => setSelectedLocation(location.name)}
             >
               <div className="flex items-center justify-center space-x-4">

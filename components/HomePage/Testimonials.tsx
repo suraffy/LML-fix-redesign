@@ -1,6 +1,4 @@
-'use client';
-
-import { motion } from 'motion/react';
+import * as motion from 'motion/react-client';
 import { Flex } from '@radix-ui/themes';
 
 const testimonials = [
@@ -52,11 +50,10 @@ const Testimonial = () => {
           <motion.div
             key={testimonial.id}
             initial={{ opacity: 0, scale: 0.9 }}
-            // animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: testimonial.id * 0.2 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-md mx-auto bg-gray1 p-6 rounded-xl shadow-md flex flex-col items-start border border-transparent hover:border-gray3 hover:shadow-xl transition-all"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.4, delay: testimonial.id * 0.1 }}
+            className="max-w-md mx-auto bg-gray1 p-6 rounded-xl shadow-md flex flex-col items-start border border-transparent hover:border-gray3 hover:shadow-xl transition-colors"
           >
             <Flex align="center" gap="4" className="mb-4">
               <motion.img

@@ -1,7 +1,4 @@
-'use client';
-
-import { motion } from 'motion/react';
-import { FolderCode, SearchCheck, Droplet, Key, DollarSign, Settings } from 'lucide-react';
+import * as motion from 'motion/react-client';
 import { Link } from '@radix-ui/themes';
 
 interface ServiceDetailsProps {
@@ -12,7 +9,7 @@ interface ServiceDetailsProps {
 
 const ServiceDetails = ({ data }: { data: ServiceDetailsProps }) => {
   return (
-    <div className="bg-gray1 text-gray12 min-h-screen flex flex-col pb-40">
+    <div className="bg-gray1 text-gray12 flex flex-col pb-40">
       <header className="bg-gradient-to-r from-gray3 via-yellow9 to-gray3 p-8 text-center text-black">
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
@@ -42,9 +39,9 @@ const ServiceDetails = ({ data }: { data: ServiceDetailsProps }) => {
           {data.icon}
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2 }}
           className="text-sm sm:text-base mt-4 text-gray-800"
         >
           <Link href="/our-services" highContrast>

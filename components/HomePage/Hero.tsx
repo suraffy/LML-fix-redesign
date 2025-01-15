@@ -1,10 +1,9 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion } from 'motion/react';
+import * as motion from 'motion/react-client';
 import { Button, Flex } from '@radix-ui/themes';
 import { Tag, ChevronDown } from 'lucide-react';
+import heroImage from '@/public/cracked-iphone.jpg';
 
 const Hero = () => {
   return (
@@ -43,9 +42,14 @@ const Hero = () => {
                 </Link>
               </Button>
               <Button size="3" color="gray" highContrast>
-                <Link href="#services" className="flex items-center gap-2">
-                  Learn More <ChevronDown size={18} />
-                </Link>
+                <motion.span
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                >
+                  <Link href="#services" className="flex items-center gap-2">
+                    Learn More <ChevronDown size={18} />
+                  </Link>
+                </motion.span>
               </Button>
             </Flex>
           </motion.div>
@@ -59,7 +63,7 @@ const Hero = () => {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <Image
-            src="/cracked-iphone.jpg"
+            src={heroImage}
             alt="Cracked Iphone"
             width={600}
             height={400}

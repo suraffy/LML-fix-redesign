@@ -1,5 +1,3 @@
-'use client';
-
 import { Button, TextField } from '@radix-ui/themes';
 import Link from 'next/link';
 import { Facebook, Twitter, Linkedin, Instagram, ArrowUp } from 'lucide-react';
@@ -7,7 +5,7 @@ import { Facebook, Twitter, Linkedin, Instagram, ArrowUp } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-gray2 text-gray12 pt-16 pb-8 border-t">
-      <div className="container mx-auto text-[15px] px-8 sm:px-16 lg:px-20 flex flex-wrap gap-12 sm:justify-evenly lg:justify-normal">
+      <div className="container mx-auto text-[15px] px-8 sm:px-16 lg:px-20 flexflex-wrap grid lg:grid-cols-2 xl:grid-cols-3 gap-16">
         <div className="space-y-10 max-w-[400px]">
           <div className="flex flex-col space-y-4">
             <h3 className="text-lg font-semibold text-yellow11">About Us</h3>
@@ -53,43 +51,46 @@ const Footer = () => {
           </form>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-yellow11">Quick Links</h3>
-          <nav className="grid gap-y-2">
-            {[
-              { href: '/', label: 'Home' },
-              { href: '#services', label: 'Services' },
-              { href: '#locations', label: 'Locations' },
-              { href: '/', label: 'Contact' },
-              { href: '/', label: 'FAQ' },
-            ].map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                className="text-gray11 hover:text-gray9 transition-all"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <div className="flex gap-6 xs:gap-12 md:gap-16">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-yellow11">Quick Links</h3>
+            <nav className="grid gap-y-2">
+              {[
+                { href: '/', label: 'Home' },
+                { href: '#services', label: 'Services' },
+                { href: '#locations', label: 'Locations' },
+                { href: '/', label: 'Contact' },
+                { href: '/', label: 'FAQ' },
+              ].map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="text-gray11 hover:text-gray9 transition-all"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-yellow11">Contact Info</h3>
-          <p className="text-gray11">
-            Email:{' '}
-            <a href="mailto:info@lmlfix.com" className="text-yellow9">
-              info@lmlfix.com
-            </a>{' '}
-            <br />
-            Phone:{' '}
-            <a href="tel:+11234567890" className="text-yellow9">
-              (123) 456-7890
-            </a>
-          </p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-gray12">Business Hours:</h4>
-            <p>8am - 7pm, Everyday</p>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-yellow11">Contact Info</h3>
+            <p className="text-gray11">
+              Email:{' '}
+              <a href="mailto:info@lmlfix.com" className="text-yellow9">
+                info@lmlfix.com
+              </a>{' '}
+              <br />
+              Phone:{' '}
+              <a href="tel:+11234567890" className="text-yellow9">
+                (123) 456-7890
+              </a>
+            </p>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-gray12">Business Hours:</h4>
+              <p>8am - 7pm, Everyday</p>
+            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>
