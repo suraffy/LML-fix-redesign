@@ -1,9 +1,10 @@
 'use client';
 
+import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
-import './globals.css';
-import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
+import './globals.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
 
@@ -36,12 +37,12 @@ export default function RootLayout({
             <div className="sticky top-0 z-50">
               <Navbar theme={themeAppearance} toggleTheme={toggleTheme} />
             </div>
-
             {children}
-
             <Footer />
           </div>
         </Theme>
+
+        <Analytics />
       </body>
     </html>
   );
