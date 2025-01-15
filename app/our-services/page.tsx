@@ -1,5 +1,5 @@
-import Services from '@/components/HomePage/Services';
 import type { Metadata } from 'next';
+import Services from '@/components/HomePage/Services';
 
 export const metadata: Metadata = {
   title: 'Services | LML Fix',

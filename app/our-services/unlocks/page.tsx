@@ -1,6 +1,6 @@
-import ServiceDetails from '@/components/OurServices/ServiceDetails';
-import { Key } from 'lucide-react';
 import type { Metadata } from 'next';
+import { Key } from 'lucide-react';
+import ServiceDetails from '@/components/OurServices/ServiceDetails';
 
 export const metadata: Metadata = {
   title: 'Unlocks | LML Fix',

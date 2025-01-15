@@ -1,6 +1,6 @@
-import ServiceDetails from '@/components/OurServices/ServiceDetails';
-import { Settings } from 'lucide-react';
 import type { Metadata } from 'next';
+import { Settings } from 'lucide-react';
+import ServiceDetails from '@/components/OurServices/ServiceDetails';
 
 export const metadata: Metadata = {
   title: 'Customization | LML Fix',

@@ -1,5 +1,5 @@
-import LocationDetails from '@/components/Location/LocationDetails';
 import type { Metadata } from 'next';
+import LocationDetails from '@/components/Location/LocationDetails';
 
 export const metadata: Metadata = {
   title: 'Seattle | LML Fix',
