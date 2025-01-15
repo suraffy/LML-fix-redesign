@@ -35,7 +35,7 @@ const Hero = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <Flex gap="4" justify="center" wrap="wrap">
+            <Flex gap="4" className="justify-center lg:justify-normal" wrap="wrap">
               <Button size="3">
                 <Link href="/" className="flex items-center gap-2">
                   <Tag size={18} /> Book a Repair

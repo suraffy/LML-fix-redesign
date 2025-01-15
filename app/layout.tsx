@@ -1,13 +1,13 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
-import './globals.css';
-import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
+import './globals.css';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Footer/Footer';
-
-import { useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,8 +18,20 @@ export default function RootLayout({
 }>) {
   const [themeAppearance, setThemeAppearance] = useState<'light' | 'dark'>('light');
 
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'light' || theme === 'dark') {
+      setThemeAppearance(theme);
+    }
+  }, []);
+
   const toggleTheme = () => {
-    setThemeAppearance((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+    setThemeAppearance((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+
+      return newTheme;
+    });
   };
 
   return (
@@ -36,12 +48,12 @@ export default function RootLayout({
             <div className="sticky top-0 z-50">
               <Navbar theme={themeAppearance} toggleTheme={toggleTheme} />
             </div>
-
             {children}
-
             <Footer />
           </div>
         </Theme>
+
+        <Analytics />
       </body>
     </html>
   );
