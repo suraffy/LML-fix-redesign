@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/public/lml_logo.png';
+import { motion } from 'motion/react';
 import {
   FolderCode,
   Droplet,
@@ -27,7 +28,7 @@ import {
 } from 'lucide-react';
 
 import { Button, Flex } from '@radix-ui/themes';
-import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+import { HamburgerMenuIcon, SunIcon, MoonIcon } from '@radix-ui/react-icons';
 
 interface Props {
   theme: 'light' | 'dark';
@@ -151,130 +152,147 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
   return (
     <>
       <div
-        className={`${isSticky ? 'shadow-sm bg-white' : 'shadow-sm shadow-gray4 bg-white sm:bg-gray1 sm:shadow-none'} container flex justify-between items-end dark:bg-gray2 transition-all`}
+        className={`${isSticky ? 'shadow-sm bg-white' : 'shadow-sm shadow-gray4 bg-white lg:bg-gray1 lg:shadow-none'} dark:bg-gray2 transition-all`}
       >
-        <NavigationMenu.Root className="flex flex-1 items-end justify-between relative py-2">
-          <Link href="/" onClick={handleClickLink}>
-            <Image
-              src={logo}
-              width={50}
-              height={50}
-              priority
-              alt="logo"
-              className="block mx-auto rounded-full"
-            />
-          </Link>
+        <div className="container flex justify-between items-center">
+          <NavigationMenu.Root
+            className={`${isSticky ? 'py-2' : 'py-2 lg:py-8'} flex flex-1 items-center justify-between relative transition-all`}
+          >
+            <Link href="/" onClick={handleClickLink}>
+              <Image
+                src={logo}
+                width={40}
+                height={40}
+                priority
+                alt="logo"
+                className="rounded-full"
+              />
+            </Link>
 
-          <NavigationMenu.List className="hidden lg:flex items-end flex-2 xl:gap-2 font-semibold rounded-lg">
-            {navLinks.map((nav) => (
-              <NavigationMenu.Item key={nav.id}>
-                {nav.hover ? (
-                  <>
-                    <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded px-4 py-3 text-[16px] font-medium leading-none text-gray12 outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7">
+            <NavigationMenu.List className="hidden lg:flex items-end flex-2 xl:gap-2 font-semibold rounded-lg">
+              {navLinks.map((nav) => (
+                <NavigationMenu.Item key={nav.id}>
+                  {nav.hover ? (
+                    <>
+                      <NavigationMenu.Trigger className="group flex select-none items-center justify-between gap-2 rounded px-4 py-3 text-[16px] font-medium leading-none text-gray12 outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7">
+                        {nav.title}
+                        <ChevronDown
+                          size={18}
+                          className="relative top-px text-gray12 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
+                          aria-hidden
+                        />
+                      </NavigationMenu.Trigger>
+                      <NavigationMenu.Content className="absolute left-0 top-0 w-full data-[motion=from-start]:animate-enterFromRight data-[motion=from-end]:animate-enterFromLeft data-[motion=to-start]:animate-exitToRight data-[motion=to-end]:animate-exitToLeft sm:w-auto">
+                        <ul
+                          className={`one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr] ${!nav.image ? 'm-0 grid list-none gap-x-2.5 p-[22px] sm:w-[600px] sm:grid-flow-col sm:grid-rows-3' : ''}`}
+                        >
+                          {nav.image && (
+                            <li className="row-span-3 grid">
+                              <NavigationMenu.Link asChild>
+                                <Link
+                                  href="/"
+                                  onClick={handleClickLink}
+                                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-[#fef100] to-gray-800 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
+                                >
+                                  <Image
+                                    src={logo}
+                                    width={60}
+                                    height={60}
+                                    loading="lazy"
+                                    alt="logo"
+                                    className="block transition-transform duration-150 rounded-xl hover:scale-110 mx-2"
+                                  />
+
+                                  <div className="mb-[7px] mt-4 text-[18px] font-medium leading-[1.2] text-white">
+                                    LML Fix
+                                  </div>
+                                  <p className="text-[14px] leading-[1.3] text-mauve4l text-gray-50">
+                                    Fast and affordable, around seattle.
+                                  </p>
+                                </Link>
+                              </NavigationMenu.Link>
+                            </li>
+                          )}
+
+                          {nav.subLinks?.map((subLink) => (
+                            <ListItem
+                              key={subLink.id}
+                              href={subLink.link}
+                              title={subLink.title}
+                              className="hover:bg-yellow3"
+                            >
+                              <div className="inline-flex gap-2">
+                                {subLink.icon} {subLink.description}
+                              </div>
+                            </ListItem>
+                          ))}
+                        </ul>
+                      </NavigationMenu.Content>
+                    </>
+                  ) : (
+                    <NavigationMenu.Link
+                      className="block select-none rounded px-4 py-3 text-[16px] font-medium leading-none text-gray12 no-underline outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
+                      href={nav.link}
+                    >
                       {nav.title}
-                      <ChevronDown
-                        size={18}
-                        className="relative top-px text-gray12 transition-transform duration-[250] ease-in group-data-[state=open]:-rotate-180"
-                        aria-hidden
-                      />
-                    </NavigationMenu.Trigger>
-                    <NavigationMenu.Content className="absolute left-0 top-0 w-full data-[motion=from-start]:animate-enterFromRight data-[motion=from-end]:animate-enterFromLeft data-[motion=to-start]:animate-exitToRight data-[motion=to-end]:animate-exitToLeft sm:w-auto">
-                      <ul
-                        className={`one m-0 grid list-none gap-x-2.5 p-[22px] sm:w-[500px] sm:grid-cols-[0.75fr_1fr] ${!nav.image ? 'm-0 grid list-none gap-x-2.5 p-[22px] sm:w-[600px] sm:grid-flow-col sm:grid-rows-3' : ''}`}
-                      >
-                        {nav.image && (
-                          <li className="row-span-3 grid">
-                            <NavigationMenu.Link asChild>
-                              <Link
-                                href="/"
-                                onClick={handleClickLink}
-                                className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-[#fef100] to-gray-800 p-[25px] no-underline outline-none focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
-                              >
-                                <Image
-                                  src={logo}
-                                  width={60}
-                                  height={60}
-                                  loading="lazy"
-                                  alt="logo"
-                                  className="block transition-transform duration-150 rounded-xl hover:scale-110 mx-2"
-                                />
+                    </NavigationMenu.Link>
+                  )}
+                </NavigationMenu.Item>
+              ))}
 
-                                <div className="mb-[7px] mt-4 text-[18px] font-medium leading-[1.2] text-white">
-                                  LML Fix
-                                </div>
-                                <p className="text-[14px] leading-[1.3] text-mauve4l text-gray-50">
-                                  Fast and affordable, around seattle.
-                                </p>
-                              </Link>
-                            </NavigationMenu.Link>
-                          </li>
-                        )}
+              <NavigationMenu.Indicator className="top-full z-10 flex h-3 -mt-1 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
+                <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray7" />
+              </NavigationMenu.Indicator>
+            </NavigationMenu.List>
 
-                        {nav.subLinks?.map((subLink) => (
-                          <ListItem
-                            key={subLink.id}
-                            href={subLink.link}
-                            title={subLink.title}
-                            className="hover:bg-yellow3"
-                          >
-                            <div className="inline-flex gap-2">
-                              {subLink.icon} {subLink.description}
-                            </div>
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenu.Content>
-                  </>
-                ) : (
-                  <NavigationMenu.Link
-                    className="block select-none rounded px-4 py-3 text-[16px] font-medium leading-none text-gray12 no-underline outline-none hover:bg-yellow3 focus:shadow-[0_0_0_2px] focus:shadow-yellow7"
-                    href={nav.link}
-                  >
-                    {nav.title}
-                  </NavigationMenu.Link>
-                )}
-              </NavigationMenu.Item>
-            ))}
+            <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
+              <NavigationMenu.Viewport className="border border-gray3 relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+            </div>
 
-            <NavigationMenu.Indicator className="top-full z-10 flex h-3 -mt-1 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
-              <div className="relative top-[70%] size-3 rotate-45 rounded-tl-xs bg-gray7" />
-            </NavigationMenu.Indicator>
-          </NavigationMenu.List>
+            <div className="hidden sm:block">
+              <Flex gap="4" align="center">
+                <Button>
+                  <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center">
+                    <Tag size={18} /> Book Now
+                  </Link>
+                </Button>
 
-          <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="border border-gray3 relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-md bg-white dark:bg-gray2 transition-[width,_height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+                <Button color="gray" highContrast>
+                  <Link href="/" onClick={handleClickLink} className="">
+                    Contact Us
+                  </Link>
+                </Button>
+              </Flex>
+            </div>
+          </NavigationMenu.Root>
+
+          <div className="pl-8 hidden lg:block">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="p-2 rounded-full bg-gray3 hover:bg-gray4 text-gray12"
+              onClick={toggleTheme}
+            >
+              {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+            </motion.button>
           </div>
 
-          <div className="hidden sm:block">
-            <Flex gap="4" align="center">
-              <Button size="3">
-                <Link href="/" onClick={handleClickLink} className="flex gap-2 items-center py-2">
-                  <Tag size={18} /> Book Now
-                </Link>
-              </Button>
-
-              <Button size="3" color="gray" highContrast>
-                <Link href="/" onClick={handleClickLink} className="py-2">
-                  Contact Us
-                </Link>
-              </Button>
-            </Flex>
+          <div className="pl-8 py-2.5 lg:hidden">
+            <Button variant="outline" onClick={() => setOpenNavbar(!openNavbar)}>
+              <motion.span
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                <HamburgerMenuIcon width="20" height="20" />
+              </motion.span>
+            </Button>
           </div>
-        </NavigationMenu.Root>
-
-        <div className="pl-8 py-2.5 hidden lg:block">
-          <Button variant="outline" onClick={toggleTheme}>
-            {theme === 'light' ? <SunIcon /> : <MoonIcon />}
-          </Button>
-        </div>
-
-        <div className="pl-8 py-2.5 lg:hidden">
-          <Button variant="outline" onClick={() => setOpenNavbar(!openNavbar)}>
-            <AlignJustify />
-          </Button>
         </div>
       </div>
 
+      {/* Mobile Navbar */}
       <Dialog.Root open={openNavbar} onOpenChange={setOpenNavbar}>
         <Dialog.Portal>
           <Theme appearance={theme}>
@@ -408,12 +426,15 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
 
                 <div className="flex justify-between items-center px-4 py-3 rounded-lg bg-gray2">
                   <span className="text-gray12">Theme</span>
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     className="p-2 rounded-full bg-gray3 hover:bg-gray4 text-gray12"
                     onClick={toggleTheme}
                   >
                     {theme === 'light' ? <SunIcon /> : <MoonIcon />}
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             </Dialog.Content>
