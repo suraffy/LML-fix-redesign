@@ -17,9 +17,18 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '1rem',
+        lg: '2rem',
+      },
       screens: {
-        '2xl': '1400px',
+        xs: '480px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+        // '2xl': '1400px',
       },
     },
     extend: {
@@ -92,7 +101,7 @@ const config = {
         },
         contentHide: {
           from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(100%)' },
+          to: { transform: 'translateX(50%)' },
         },
       },
       animation: {
@@ -106,9 +115,9 @@ const config = {
         exitToRight: 'exitToRight 250ms ease',
         slideDown: 'slideDown 300ms ease-in-out',
         slideUp: 'slideUp 300ms ease-in-out',
-        overlayShow: 'overlayShow 300ms ease-in-out',
-        contentShow: 'contentShow 300ms ease-in-out',
-        contentHide: 'contentHide 300ms ease-in-out',
+        overlayShow: 'overlayShow 300ms ease',
+        contentShow: 'contentShow 300ms ease',
+        contentHide: 'contentHide 300ms ease',
       },
     },
   },
