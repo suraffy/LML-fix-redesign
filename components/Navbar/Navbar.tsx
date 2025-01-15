@@ -151,12 +151,10 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
   return (
     <>
       <div
-        className={`${isSticky ? 'shadow-sm bg-white' : 'shadow-sm shadow-gray4 bg-white lg:bg-gray1 lg:shadow-none'} dark:bg-gray2 transition-all`}
+        className={`${isSticky ? 'shadow-sm bg-white' : 'lg:py-8 shadow-sm shadow-gray4 bg-white lg:bg-gray1 lg:shadow-none'} dark:bg-gray2 transition-all`}
       >
-        <div className="container flex justify-between items-center">
-          <NavigationMenu.Root
-            className={`${isSticky ? 'py-2' : 'py-2 lg:py-8'} flex flex-1 items-center justify-between relative transition-all`}
-          >
+        <div className={`container flex justify-between items-center`}>
+          <NavigationMenu.Root className="py-2 flex flex-1 items-center justify-between relative">
             <Link href="/" onClick={handleClickLink}>
               <Image
                 src={logo}
