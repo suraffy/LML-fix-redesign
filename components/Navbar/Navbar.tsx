@@ -138,7 +138,7 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-    setIsSticky(currentScrollY > 0);
+    setIsSticky(currentScrollY > 30);
   };
 
   useEffect(() => {
@@ -151,7 +151,7 @@ const NavBar = ({ theme, toggleTheme }: Props) => {
   return (
     <>
       <div
-        className={`${isSticky ? 'shadow-sm bg-white' : 'lg:py-8 shadow-sm shadow-gray4 bg-white lg:bg-gray1 lg:shadow-none'} dark:bg-gray2 transition-all`}
+        className={`${isSticky ? 'shadow-sm bg-white dark:bg-gray2' : 'bg-gray1'}  pt-10 transition-all`}
       >
         <div className={`container flex justify-between items-center`}>
           <NavigationMenu.Root className="py-2 flex flex-1 items-center justify-between relative">
