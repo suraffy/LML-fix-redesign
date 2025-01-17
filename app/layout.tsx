@@ -45,7 +45,7 @@ export default function RootLayout({
           scaling="95%"
         >
           <div className={inter.className}>
-            <div className="sticky top-0 z-50">
+            <div className="sticky -top-10 z-50">
               <Navbar theme={themeAppearance} toggleTheme={toggleTheme} />
             </div>
             {children}
